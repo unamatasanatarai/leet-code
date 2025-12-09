@@ -64,6 +64,23 @@ func isPalindrome3(x int) bool {
 	return rx == x
 }
 
+func isPalindromeFastest(x int) bool {
+	if x < 0 || (x%10 == 0 && x != 0) {
+		return false
+	}
+
+	if x < 10 {
+		return true
+	}
+
+	rx := 0
+	for x > rx {
+		rx = rx*10 + x%10
+		x /= 10
+	}
+	return rx == x || rx/10 == x
+}
+
 func main() {
 	palindromes := []Palindrome{
 		{Num: 123321, IsPalindrome: true},
@@ -75,6 +92,6 @@ func main() {
 	}
 
 	for i := 0; i < len(palindromes); i++ {
-		fmt.Println(palindromes[i].Num, isPalindrome2(palindromes[i].Num), palindromes[i].IsPalindrome)
+		fmt.Println(palindromes[i].Num, isPalindromeFastest(palindromes[i].Num), palindromes[i].IsPalindrome)
 	}
 }
