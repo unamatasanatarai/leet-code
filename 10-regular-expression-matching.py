@@ -35,6 +35,32 @@ class Solution:
         a2t(p, s, dp)
         return dp[-1][-1] == 1
 
+class Solution2:
+    def isMatch(self, s: str, p: str) -> bool:
+        plen = len(p)
+        plenr = range(plen)
+
+        dp = [False] * (plen + 1)
+        dp[0] = True
+        j=1
+        for j in plenr:
+            if p[j] == "*":
+                dp[j + 1] = dp[j - 1]
+
+        for char in s:
+            new_dp = [False] * (plen + 1)
+            for j in plenr:
+                if p[j] == "." or p[j] == char:
+                    new_dp[j + 1] = dp[j]
+                elif p[j] == "*":
+                    # zero occurances
+                    new_dp[j + 1] = new_dp[j - 1]
+                    # 1+ occurances
+                    if p[j - 1] == "." or p[j - 1] == char:
+                        new_dp[j + 1] = new_dp[j + 1] or dp[j + 1]
+            dp = new_dp
+        
+        return dp[-1]
 
 tests = [
     # leet
@@ -94,7 +120,7 @@ tests = [
     ["ab", ".*..", True],
 ]
 
-re = Solution()
+re = Solution2()
 allgood = True
 for i in tests:
     m = re.isMatch(i[0], i[1])
