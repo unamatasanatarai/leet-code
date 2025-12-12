@@ -1,0 +1,2 @@
+gcc -Wall -Wextra -Werror -O2 189-rotate-array.c -o bin/189 && ./bin/189
+
