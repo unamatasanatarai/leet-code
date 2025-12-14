@@ -1,3 +1,4 @@
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -5,39 +6,36 @@ double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2,
                               int nums2Size) {
   int nums_len = nums1Size + nums2Size;
   int *nums = (int *)malloc(nums_len * sizeof(int));
-  int *nums_p = nums;
 
-  for (int i = 0; i < nums1Size; i++) {
-    *nums_p++ = nums1[i];
+  int i = 0, j = 0, k = 0;
+  while (i < nums1Size && j < nums2Size) {
+    nums[k++] = (nums1[i] <= nums2[j]) ? nums1[i++] : nums2[j++];
   }
 
-  for (int i = 0; i < nums2Size; i++) {
-    *nums_p++ = nums2[i];
+  while (i < nums1Size) {
+    nums[k++] = nums1[i++];
   }
 
-  for (int i = 1; i < nums_len; i++) {
-    int cur_val = nums[i];
-    int loc = i - 1;
-    while (loc >= 0 && nums[loc] > cur_val) {
-      nums[loc + 1] = nums[loc];
-      loc--;
-    }
-    nums[loc + 1] = cur_val;
+  while (j < nums2Size) {
+    nums[k++] = nums2[j++];
   }
 
-  double mid = nums_len / 2.0;
   int mid_floor = nums_len / 2;
-  if (mid > mid_floor) {
-    return nums[mid_floor];
+  if (nums_len % 2 == 1) {
+    double result = nums[mid_floor];
+    free(nums);
+    return result;
   }
-  double r = (nums[mid_floor - 1] + nums[mid_floor]) / 2.0;
+  double result = (nums[mid_floor - 1] + nums[mid_floor]) / 2.0;
   free(nums);
-  return r;
+  return result;
 }
 
 int main() {
   int a1[] = {1, 2};
+  int a1size = 2;
   int a2[] = {3, 4};
-  printf("%f", findMedianSortedArrays(a1, 2, a2, 2));
+  int a2size = 2;
+  printf("%f\n", findMedianSortedArrays(a1, a1size, a2, a2size));
   return 0;
 }
