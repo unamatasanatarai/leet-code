@@ -2,6 +2,9 @@
 #include <stdlib.h>
 
 void rotate(int *nums, int numsSize, int k) {
+  if (numsSize == 0) {
+    return;
+  }
   k %= numsSize;
   if (k == 0) {
     return;
