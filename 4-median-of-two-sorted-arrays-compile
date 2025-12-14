@@ -1,0 +1,2 @@
+gcc -Wall -Wextra -Werror -O2 4-median-of-two-sorted-arrays.c -o bin/4 && ./bin/4
+
