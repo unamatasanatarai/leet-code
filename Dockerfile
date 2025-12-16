@@ -15,6 +15,7 @@ RUN apk add --no-cache \
     curl \
     git \
     bash \
+    prettier \
     rustfmt
 
 # Install uv (astral)
