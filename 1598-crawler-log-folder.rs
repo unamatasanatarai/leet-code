@@ -3,18 +3,17 @@ struct Solution;
 impl Solution {
     pub fn min_operations(logs: Vec<String>) -> i32 {
         let mut cnt = 0;
-        for log in logs {
-            if log == "../" {
-                cnt -= 1;
-                if cnt < 0 {
-                    cnt = 0;
+        for log in &logs {
+            let l = log.as_bytes();
+            if l == b"../" {
+                if cnt > 0 {
+                    cnt -= 1;
                 }
-            } else if log == "./" {
-            } else {
+            } else if l != b"./" {
                 cnt += 1;
             }
         }
-        return cnt;
+        cnt
     }
 }
 
