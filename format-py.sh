@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[[ -z $1 ]] && echo "Usage: $0 file.py" && exit 1
+
 VENV_DIR="venv"
 REQUIREMENTS_DEV="requirements-dev.txt"
 
@@ -12,6 +14,6 @@ fi
 source "$VENV_DIR/bin/activate"
 
 echo "🛠️  Running Ruff (Lint & Format)..."
-ruff check --fix *.py
-ruff format *.py
+ruff check --fix "$1"
+ruff format "$1"
 
