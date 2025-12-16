@@ -1,0 +1,3 @@
+clear
+gcc -Wall -Wextra -Werror -O2 6-zigzag-conversion.c -o bin/6 && ./bin/6
+
