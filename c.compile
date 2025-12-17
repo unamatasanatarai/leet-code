@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+clear
+
+[[ -z "$1" ]] && echo "Usage: $0 file.c" && exit 1
+
+gcc -Wall -Wextra -Werror -O2 "$1" utils.c -o "bin/$1" && ./bin/"$1"
+

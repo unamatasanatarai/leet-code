@@ -1,2 +1,0 @@
-gcc -Wall -Wextra -Werror -O2 1-two-sum.c -o bin/1-two-sum && ./bin/1-two-sum
-

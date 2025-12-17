@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+clear
+[[ -z "$1" ]] && echo "Usage: $0 file.rs" && exit 1
+rustc "$1" -o bin/"$1" && ./bin/"$1"
