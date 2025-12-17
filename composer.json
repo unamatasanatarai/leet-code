@@ -1,0 +1,14 @@
+{
+    "name": "leetcode/solutions",
+    "description": "LeetCode solutions",
+    "type": "project",
+    "require": {
+        "php": "^8.0"
+    },
+    "config": {
+        "platform": {
+            "php": "8.4.15"
+        }
+    }
+}
+

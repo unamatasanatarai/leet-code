@@ -1,19 +1,22 @@
 IMAGE_NAME = leet-dev
 CONTAINER_NAME = leet-container
 
-.PHONY: docker-build docker-run docker-sh docker-stop docker-destroy
+.PHONY: build rebuild run sh stop destroy
 
-docker-build:
+build:
 	docker build -t $(IMAGE_NAME) .
 
-docker-run: docker-build
-	docker run -d --rm --name $(CONTAINER_NAME) -v $$(pwd):/home/dev -w /home/dev $(IMAGE_NAME) tail -f /dev/null
+rebuild:
+	docker build --no-cache -t $(IMAGE_NAME) .
 
-docker-sh:
-	docker exec -it $(CONTAINER_NAME) /bin/sh
+run:
+	docker run -d --rm --name $(CONTAINER_NAME) -v $$(pwd):/root/dev -w /root/dev $(IMAGE_NAME) tail -f /dev/null
 
-docker-stop:
+sh:
+	docker exec -it $(CONTAINER_NAME) /bin/bash
+
+stop:
 	docker stop $(CONTAINER_NAME)
 
-docker-destroy:
+kknd:
 	docker rmi $(IMAGE_NAME)
