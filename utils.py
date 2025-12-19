@@ -3,7 +3,7 @@ def bisect_left(arr, search):
     lft, rght = 0, len(arr)
 
     while lft < rght:
-        mid = (lft + rght) // 2
+        mid = (lft + rght) >> 1
 
         if arr[mid] < search:
             lft = mid + 1
@@ -18,7 +18,7 @@ def bisect_right(arr, search):
     lft, rght = 0, len(arr)
 
     while lft < rght:
-        mid = (lft + rght) // 2
+        mid = (lft + rght) >> 1
 
         if arr[mid] <= search:
             lft = mid + 1
@@ -29,6 +29,9 @@ def bisect_right(arr, search):
 
 
 def insert(arr, idx, val):
+    # arr[idx:idx] = [val]
+    # arr.insert(idx, val)
+    # but this is to make sure I know how to do it manually
     arr.append(0)
     for i in range(len(arr) - 1, idx, -1):
         arr[i] = arr[i - 1]

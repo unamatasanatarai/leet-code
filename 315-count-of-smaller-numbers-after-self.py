@@ -6,7 +6,7 @@ def bisect_left(arr, search):
     lft, rght = 0, len(arr)
 
     while lft < rght:
-        mid = (lft + rght) // 2
+        mid = (lft + rght) >> 1
 
         if arr[mid] < search:
             lft = mid + 1
