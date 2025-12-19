@@ -19,3 +19,4 @@ venv
 .php-cs-fixer.php.cache.lock.lock.lock.lock.lock.lock
 .php-cs-fixer.php.cache.lock.lock.lock.lock.lock.lock.lock
 .php-cs-fixer.php.cache.lock.lock.lock.lock.lock.lock.lock.lock
+__pycache__
