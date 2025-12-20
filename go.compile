@@ -4,4 +4,4 @@
 go fmt "$1" || exit 1
 exe="bin/${1%.go}"
 go build -o "$exe" "$1" || exit 1
-./$exe
+time ./$exe
