@@ -39,6 +39,7 @@ int myAtoiPointer(char *s) {
 
   return r * sign;
 }
+
 int myAtoi(char *s) {
   if (!s) {
     return 0;
