@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+clear
+[[ -z "$1" ]] && echo "Usage: $0 file.py" && exit 1
+time venv/bin/python "$1"
