@@ -11,12 +11,9 @@ char *intToRoman(int num) {
   char *ptr = res;
 
   const char *thousands[] = {"", "M", "MM", "MMM"};
-  const char *hundreds[] = {"",  "C",  "CC",  "CCC",  "CD",
-                            "D", "DC", "DCC", "DCCC", "CM"};
-  const char *tens[] = {"",  "X",  "XX",  "XXX",  "XL",
-                        "L", "LX", "LXX", "LXXX", "XC"};
-  const char *ones[] = {"",  "I",  "II",  "III",  "IV",
-                        "V", "VI", "VII", "VIII", "IX"};
+  const char *hundreds[] = {"",  "C",  "CC",  "CCC",  "CD", "D", "DC", "DCC", "DCCC", "CM"};
+  const char *tens[] = {"",  "X",  "XX",  "XXX",  "XL", "L", "LX", "LXX", "LXXX", "XC"};
+  const char *ones[] = {"",  "I",  "II",  "III",  "IV", "V", "VI", "VII", "VIII", "IX"};
 
   strcpy(ptr, thousands[num / 1000]);
   ptr += strlen(ptr);
