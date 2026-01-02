@@ -7,42 +7,44 @@
  */
 char **letterCombinations(char *digits, int *returnSize) {
 
-  *returnSize = 0;
-  if (!digits || digits[0] == '\0')
+  if (!digits || !*digits) {
+    *returnSize = 0;
     return 0;
+  }
 
-  static const char *map[] = {"",    "",    "abc",  "def", "ghi",
-                              "jkl", "mno", "pqrs", "tuv", "wxyz"};
-  static const int map_lenghts[] = {0, 0, 3, 3, 3, 3, 3, 4, 3, 4};
+  static const char *digit_to_letters[] = {"",    "",    "abc",  "def", "ghi",
+                                           "jkl", "mno", "pqrs", "tuv", "wxyz"};
+  static const int digit_letters_counts[] = {0, 0, 3, 3, 3, 3, 3, 4, 3, 4};
 
   int digits_len = strlen(digits);
   char *cpy = digits;
   int result_len = 1;
+
   while (*cpy) {
     int digit = *cpy - '0';
     if (digit < 2) {
       return 0;
     }
-    result_len *= map_lenghts[digit];
+    result_len *= digit_letters_counts[digit];
     cpy++;
   }
   *returnSize = result_len;
 
-  char **result = malloc(sizeof(char *) * result_len);
+  char **result = malloc(sizeof(char *) * *returnSize);
 
-  for (int i = 0; i < result_len; i++) {
+  for (int i = 0; i < *returnSize; i++) {
     result[i] = malloc(sizeof(char) * digits_len + 1);
     result[i][digits_len] = '\0';
   }
 
-  int repeat = result_len;
+  int repeat = *returnSize;
+
   for (int i = 0; i < digits_len; i++) {
     int digit = digits[i] - '0';
-    const char *letters = map[digit];
+    const char *letters = digit_to_letters[digit];
     int letters_len = strlen(letters);
     repeat /= letters_len;
-
-    for (int j = 0; j < result_len; j++) {
+    for (int j = 0; j < *returnSize; j++) {
       result[j][i] = letters[(j / repeat) % letters_len];
     }
   }
