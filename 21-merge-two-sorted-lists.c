@@ -17,33 +17,26 @@ void print_list(struct ListNode *list) {
 }
 
 struct ListNode *mergeTwoLists(struct ListNode *list1, struct ListNode *list2) {
-  if (!list1)
-    return list2;
-  if (!list2)
-    return list1;
-
-  size_t list_node_size = sizeof(struct ListNode);
-  struct ListNode *result = malloc(list_node_size);
-  struct ListNode *result_ptr = result;
+  struct ListNode dummy;
+  struct ListNode *tail = &dummy;
+  dummy.next = NULL;
 
   while (list1 && list2) {
 
-    if (list1->val < list2->val) {
-      result_ptr->next = list1;
+    if (list1->val <= list2->val) {
+      tail->next = list1;
       list1 = list1->next;
     } else {
-      result_ptr->next = list2;
+      tail->next = list2;
       list2 = list2->next;
     }
 
-    result_ptr = result_ptr->next;
+    tail = tail->next;
   }
 
-  result_ptr->next = (list1)?list1:list2;
+  tail->next = (list1) ? list1 : list2;
 
-  struct ListNode *real_result = result->next;
-  free(result);
-  return real_result;
+  return dummy.next;
 }
 
 // Function to create a linked list from an array
