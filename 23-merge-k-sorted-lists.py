@@ -31,11 +31,17 @@ class Solution:
         if not lists:
             return None
 
-        dummy = lists[0]
+        if len(lists) == 1:
+            return lists[0]
 
-        for i in range(1, len(lists)):
-            dummy = self.merge2lists(dummy, lists[i])
-        return dummy
+        interval = 1
+        while interval < len(lists):
+            for i in range(0, len(lists) - interval, interval * 2):
+                print(i, interval)
+                lists[i] = self.merge2lists(lists[i], lists[i + interval])
+            interval *= 2
+
+        return lists[0]
 
 
 # Helper: create linked list from list of values (or None if empty list)
