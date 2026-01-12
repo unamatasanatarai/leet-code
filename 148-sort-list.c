@@ -56,7 +56,7 @@ struct ListNode *sortList(struct ListNode *head) {
       struct ListNode *left = curr;
       struct ListNode *right = split(left, size);
       curr = split(right, size);
-      struct ListNode *new_tail;
+      struct Listwwwwwwwww
       prev->next = mergeTwoLists(left, right, &new_tail);
       prev = new_tail;
     }
