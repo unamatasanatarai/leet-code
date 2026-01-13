@@ -5,6 +5,34 @@
 
 bool isValid(const char *s)
 {
+    char stack[10001];
+    int top = 0;
+    for (; *s; s++)
+    {
+        char c = *s;
+        if (c == '(' || c == '[' || c == '{')
+        {
+            stack[top++] = c;
+        }
+        else
+        {
+            if (top == 0)
+                return false;
+            char open = stack[--top];
+            // Valid pairs XOR to 1 or 6:
+            // 'char' XOR 'char' = ASCII_CODE XOR ASCII_CODE
+            // ')' ^ '(' = 41 ^ 40 = 1
+            // ']' ^ '[' = 93 ^ 91 = 6
+            // '}' ^ '{' = 125 ^ 123 = 6
+            if ((c ^ open) != 6 && (c ^ open) != 1)
+                return false;
+        }
+    }
+    return top == 0;
+}
+
+bool isValid_original(const char *s)
+{
     if (!s[0])
         return true;
 
