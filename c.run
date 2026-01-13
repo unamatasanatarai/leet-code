@@ -3,6 +3,6 @@
 clear
 
 [[ -z "$1" ]] && echo "Usage: $0 file.c" && exit 1
-
-gcc -g -Wall -Wextra -Werror -O2 "$1" utils.c -o "bin/$1" && time ./bin/"$1"
+out="./bin/${1%.c}"
+gcc -Wall -Wextra -Werror -O2 "$1" -o "$out" && time "$out" || printf "\nyour C exited with code: <%d>\n" $?
 
